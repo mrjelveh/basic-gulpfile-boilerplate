@@ -19,9 +19,9 @@ const autoprefixer = require('autoprefixer'),
       
 // file path
 const files = {
-    scssPath: 'app/scss/**/*.scss',
-    jsPath: 'app/js/**/*.js',
-    imagePath: 'src/img/*'
+    scssPath: 'src/scss/**/*.scss',
+    jsPath: 'src/js/**/*.js',
+    imagePath: 'src/img/**/*'
 }
 
 // sass
@@ -29,12 +29,12 @@ function scssTask() {
     return src(files.scssPath)
            .pipe(sass())
            .pipe(cleanCSS())
-           .pipe(dest('dist'))            // without minify
+           .pipe(dest('dist/css'))            // without minify
            .pipe(cssnano())
            .pipe(rename({
                 suffix: '.min'
             }))
-           .pipe(dest('dist'))            // minified file
+           .pipe(dest('dist/css'))            // minified file
 }
 
 // js
@@ -45,12 +45,12 @@ function jsTask() {
            .pipe(babel({
                 presets: ['@babel/preset-env']
             }))
-           .pipe(dest('dist'))            // without minify
+           .pipe(dest('dist/js'))            // without minify
            .pipe(uglify())
            .pipe(rename({
                 suffix: '.min'
             }))
-           .pipe(dest('dist'))            // minified file
+           .pipe(dest('dist/js'))            // minified file
 }
 
 
