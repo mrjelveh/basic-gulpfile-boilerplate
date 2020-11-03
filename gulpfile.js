@@ -28,9 +28,8 @@ const files = {
 function scssTask() {
     return src(files.scssPath)
            .pipe(sass())
-           .pipe(cleanCSS())
            .pipe(dest('dist/css'))            // without minify
-           .pipe(cssnano())
+           .pipe(cleanCSS())
            .pipe(rename({
                 suffix: '.min'
             }))
